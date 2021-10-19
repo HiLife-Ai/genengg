@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 07, 2021 at 10:32 AM
--- Server version: 5.7.23-23
--- PHP Version: 7.3.28
+-- Host: 127.0.0.1
+-- Generation Time: Oct 13, 2021 at 11:36 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `srisa988_clt`
+-- Database: `final`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +27,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `client`
 --
 
-DROP TABLE IF EXISTS `client`;
 CREATE TABLE `client` (
   `clnId` varchar(100) NOT NULL,
   `clnName` varchar(255) NOT NULL,
@@ -43,7 +41,7 @@ CREATE TABLE `client` (
   `clnremark` varchar(255) NOT NULL,
   `clnnote` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -52,7 +50,6 @@ CREATE TABLE `client` (
 -- Table structure for table `employee`
 --
 
-DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `empId` varchar(100) NOT NULL,
   `empName` varchar(255) NOT NULL,
@@ -66,6 +63,7 @@ CREATE TABLE `employee` (
   `empRole` varchar(255) NOT NULL,
   `joinDate` date NOT NULL,
   `endDate` date NOT NULL,
+  `experience` varchar(255) NOT NULL,
   `remark` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -75,8 +73,8 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`empId`, `empName`, `empMail`, `empPwd`, `dob`, `empPhone`, `empGender`, `empAdd`, `empSkill`, `empRole`, `joinDate`, `endDate`, `remark`, `created_at`, `updated_at`) VALUES
-('GET-001', 'Admin', 'admin@admin.com', '123456', '2002-09-05', '8344187125', 'Male', '118/9-3,kamaraj nagar\r\nElavamalai', 'php', 'General Manager', '2021-09-05', '0000-00-00', 'good', '2006-09-21 06:29:51', '0000-00-00 00:00:00');
+INSERT INTO `employee` (`empId`, `empName`, `empMail`, `empPwd`, `dob`, `empPhone`, `empGender`, `empAdd`, `empSkill`, `empRole`, `joinDate`, `endDate`, `experience`, `remark`, `created_at`, `updated_at`) VALUES
+('GET-001', 'Admin', 'admin@admin.com', '123456', '2002-09-05', '8344187125', 'Male', '118/9-3,kamaraj nagar\r\nElavamalai', 'php', 'General Manager', '2021-09-05', '0000-00-00', '', 'good', '2006-09-21 06:29:51', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -84,7 +82,6 @@ INSERT INTO `employee` (`empId`, `empName`, `empMail`, `empPwd`, `dob`, `empPhon
 -- Table structure for table `gender`
 --
 
-DROP TABLE IF EXISTS `gender`;
 CREATE TABLE `gender` (
   `id` int(30) NOT NULL,
   `gender` varchar(255) NOT NULL
@@ -105,7 +102,6 @@ INSERT INTO `gender` (`id`, `gender`) VALUES
 -- Table structure for table `project`
 --
 
-DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
   `proId` varchar(100) NOT NULL,
   `proName` varchar(255) NOT NULL,
@@ -131,7 +127,6 @@ CREATE TABLE `project` (
 -- Table structure for table `project_time`
 --
 
-DROP TABLE IF EXISTS `project_time`;
 CREATE TABLE `project_time` (
   `id` int(11) NOT NULL,
   `project_id` varchar(255) NOT NULL,
@@ -147,7 +142,6 @@ CREATE TABLE `project_time` (
 -- Table structure for table `role`
 --
 
-DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` varchar(100) NOT NULL,
   `role` varchar(255) NOT NULL,
@@ -172,7 +166,6 @@ INSERT INTO `role` (`id`, `role`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `task`
 --
 
-DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `taskId` varchar(100) NOT NULL,
   `taskTitle` varchar(255) NOT NULL,
@@ -196,7 +189,6 @@ CREATE TABLE `task` (
 -- Table structure for table `task_time`
 --
 
-DROP TABLE IF EXISTS `task_time`;
 CREATE TABLE `task_time` (
   `id` int(11) NOT NULL,
   `task_id` varchar(255) NOT NULL,
@@ -212,7 +204,6 @@ CREATE TABLE `task_time` (
 -- Table structure for table `task_users`
 --
 
-DROP TABLE IF EXISTS `task_users`;
 CREATE TABLE `task_users` (
   `id` int(11) NOT NULL,
   `created_at` date NOT NULL,
